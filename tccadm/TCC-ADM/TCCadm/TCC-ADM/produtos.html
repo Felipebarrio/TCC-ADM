@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IgniteFIT - Produtos</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#020817;
+    color:white;
+}
+
+/* TOPO */
+
+.top-logo{
+    text-align:center;
+    padding:30px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.top-logo h1{
+    font-size:70px;
+    color:#1e90ff;
+    text-shadow:0 0 20px #1e90ff;
+}
+
+.top-logo p{
+    color:#d1d5db;
+    font-size:18px;
+}
+
+/* NAVBAR */
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 5%;
+    border-bottom:2px solid #1e90ff;
+    background:#071426;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:700;
+}
+
+.logo span{
+    color:#1e90ff;
+}
+
+.menu{
+    display:flex;
+    gap:30px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:.3s;
+}
+
+.menu a:hover{
+    color:#1e90ff;
+}
+
+.search{
+    display:flex;
+    gap:10px;
+}
+
+.search input{
+    width:250px;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+}
+
+.search button{
+    background:#1e90ff;
+    border:none;
+    color:white;
+    padding:10px 20px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+    width:90%;
+    margin:40px auto;
+    border-radius:20px;
+    overflow:hidden;
+    background:
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+    url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1600');
+    background-size:cover;
+    background-position:center;
+}
+
+.hero-content{
+    padding:100px;
+    max-width:700px;
+}
+
+.hero-content h4{
+    color:#1e90ff;
+    margin-bottom:10px;
+}
+
+.hero-content h1{
+    font-size:70px;
+    line-height:80px;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    color:#ddd;
+    margin-bottom:30px;
+    font-size:20px;
+}
+
+.btn{
+    background:#1e90ff;
+    color:white;
+    text-decoration:none;
+    padding:15px 40px;
+    border-radius:8px;
+    display:inline-block;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 25px #1e90ff;
+}
+
+/* BENEFÍCIOS */
+
+.benefits{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.benefit{
+    background:#071426;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    border:1px solid rgba(30,144,255,.2);
+}
+
+.benefit h3{
+    color:#1e90ff;
+    margin-bottom:10px;
+}
+
+/* TÍTULO */
+
+.section-title{
+    width:90%;
+    margin:60px auto 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.section-title h2{
+    font-size:40px;
+}
+
+.section-title a{
+    color:#1e90ff;
+    text-decoration:none;
+}
+
+/* PRODUTOS */
+
+.products{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#071426;
+    border-radius:15px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 30px rgba(30,144,255,.3);
+}
+
+.card img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    margin-bottom:10px;
+}
+
+.card-content p{
+    color:#bdbdbd;
+    margin-bottom:15px;
+}
+
+.price{
+    color:#1e90ff;
+    font-size:28px;
+    font-weight:700;
+}
+
+.buy{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    text-decoration:none;
+    color:white;
+    background:#1e90ff;
+    padding:12px;
+    border-radius:8px;
+    font-weight:600;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:80px;
+    padding:50px;
+    text-align:center;
+    background:#071426;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+@media(max-width:900px){
+
+nav{
+    flex-direction:column;
+    gap:20px;
+}
+
+.hero-content{
+    padding:50px;
+}
+
+.hero-content h1{
+    font-size:45px;
+    line-height:55px;
+}
+
+.benefits{
+    grid-template-columns:1fr 1fr;
+}
+}
+
+@media(max-width:600px){
+
+.benefits{
+    grid-template-columns:1fr;
+}
+
+.hero-content{
+    padding:30px;
+}
+
+.hero-content h1{
+    font-size:35px;
+    line-height:45px;
+}
+
+.top-logo h1{
+    font-size:45px;
+}
+}
+
+</style>
+</head>
+<body>
+
+<div class="top-logo">
+    <h1>igniteFIT</h1>
+    <p>Onde o estilo encontra a performance.</p>
+</div>
+
+<nav>
+
+<div class="logo">
+    ignite<span>FIT</span>
+</div>
+
+<div class="menu">
+    <a href="index.html">Home</a>
+    <a href="#">Produtos</a>
+    <a href="masculino.html">Masculino</a>
+    <a href="feminino.html">Feminino</a>
+    <a href="contato.html">Contato</a>
+    <a href="cadastro.html">Cadastro/Login</a>
+</div>
+
+<div class="search">
+    <input type="text" placeholder="Pesquisar">
+    <button>Buscar</button>
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+    <h4>NOVA COLEÇÃO</h4>
+
+    <h1>
+        SUPERE SEUS<br>
+        LIMITES
+    </h1>
+
+    <p>
+        Roupas fitness desenvolvidas para máximo
+        desempenho, conforto e estilo.
+    </p>
+
+    <a href="#" class="btn">VER COLEÇÃO</a>
+</div>
+
+</section>
+
+<section class="benefits">
+
+<div class="benefit">
+    <h3>🚚 Frete Grátis</h3>
+    <p>Compras acima de R$199</p>
+</div>
+
+<div class="benefit">
+    <h3>🛡 Compra Segura</h3>
+    <p>Pagamento protegido</p>
+</div>
+
+<div class="benefit">
+    <h3>🔄 Troca Fácil</h3>
+    <p>Até 7 dias para trocar</p>
+</div>
+
+<div class="benefit">
+    <h3>🎧 Atendimento</h3>
+    <p>Suporte especializado</p>
+</div>
+
+</section>
+
+<div class="section-title">
+    <h2>Produtos em Destaque</h2>
+    <a href="#">Ver todos</a>
+</div>
+
+<section class="products">
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1506629905607-d9c297d0b7d1?w=800">
+    <div class="card-content">
+        <h3>Legging Premium</h3>
+        <p>Tecido compressivo e confortável.</p>
+        <div class="price">R$ 89,90</div>
+        <a href="#" class="buy">COMPRAR</a>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800">
+    <div class="card-content">
+        <h3>Top Fitness</h3>
+        <p>Alta sustentação para treinos.</p>
+        <div class="price">R$ 59,90</div>
+        <a href="#" class="buy">COMPRAR</a>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800">
+    <div class="card-content">
+        <h3>Camiseta Dry Fit</h3>
+        <p>Leve, respirável e moderna.</p>
+        <div class="price">R$ 49,90</div>
+        <a href="#" class="buy">COMPRAR</a>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800">
+    <div class="card-content">
+        <h3>Short Training</h3>
+        <p>Conforto total para treinar.</p>
+        <div class="price">R$ 44,90</div>
+        <a href="#" class="buy">COMPRAR</a>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800">
+    <div class="card-content">
+        <h3>Jaqueta Sport</h3>
+        <p>Proteção e estilo para qualquer clima.</p>
+        <div class="price">R$ 129,90</div>
+        <a href="#" class="buy">COMPRAR</a>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800">
+    <div class="card-content">
+        <h3>Conjunto Fitness</h3>
+        <p>Top + Legging.</p>
+        <div class="price">R$ 149,90</div>
+        <a href="#" class="buy">COMPRAR</a>
+    </div>
+</div>
+
+</section>
+
+<footer>
+    <h2>igniteFIT</h2>
+    <p>© 2026 - Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
