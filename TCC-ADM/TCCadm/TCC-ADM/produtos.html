@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IGNITE FIT - Produtos</title>
+
+    <!-- =====================================================
+         BOOTSTRAP
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- =====================================================
+         CSS PERSONALIZADO
+    ====================================================== -->
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ====================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =====================================================
+           BODY
+        ====================================================== */
+
+        body {
+
+            min-height: 100vh;
+
+            padding-top: 52px;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #1e3a8a 0%,
+                    #0f172a 45%,
+                    #020617 100%
+                );
+
+            color: white;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           EFEITOS DO FUNDO
+        ====================================================== */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 700px;
+            height: 700px;
+
+            background: #2563eb;
+
+            filter: blur(180px);
+
+            opacity: 0.16;
+
+            top: -300px;
+            left: -300px;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 600px;
+            height: 600px;
+
+            background: #06b6d4;
+
+            filter: blur(180px);
+
+            opacity: 0.13;
+
+            bottom: -300px;
+            right: -300px;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ====================================================== */
+
+        .navbar {
+
+            height: 52px;
+
+            background: #020914 !important;
+
+            border-bottom: 2px solid #2196f3;
+
+            box-shadow:
+                0 2px 15px rgba(0, 0, 0, 0.4);
+
+            z-index: 1000;
+        }
+
+
+        .navbar-brand {
+
+            color: white !important;
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+
+        .navbar-brand span {
+
+            color: #38a5ff;
+        }
+
+
+        .nav-link {
+
+            color: white !important;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-link:hover,
+        .nav-link.active {
+
+            color: #2196f3 !important;
+        }
+
+
+        .navbar-toggler {
+
+            border-color: #2196f3;
+        }
+
+
+        .navbar-toggler:focus {
+
+            box-shadow:
+                0 0 0 0.15rem rgba(33, 150, 243, 0.3);
+        }
+
+
+        /* =====================================================
+           CONTEÚDO
+        ====================================================== */
+
+        .conteudo {
+
+            width: 100%;
+
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 45px 30px 70px;
+        }
+
+
+        /* =====================================================
+           TÍTULO
+        ====================================================== */
+
+        .titulo {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .titulo h1 {
+
+            font-size: 38px;
+
+            font-weight: bold;
+
+            color: white;
+
+            margin-bottom: 10px;
+
+            text-shadow:
+                0 0 20px rgba(37, 150, 243, 0.25);
+        }
+
+
+        .titulo h1 span {
+
+            color: #38a5ff;
+        }
+
+
+        .titulo p {
+
+            color: #94a3b8;
+
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           FILTROS
+        ====================================================== */
+
+        .filtros {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 35px;
+        }
+
+
+        .filtro {
+
+            border: 1px solid rgba(56, 165, 255, 0.35);
+
+            background:
+                rgba(15, 23, 42, 0.85);
+
+            color: #cbd5e1;
+
+            padding: 10px 22px;
+
+            border-radius: 30px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .filtro:hover,
+        .filtro.ativo {
+
+            color: white;
+
+            border-color: transparent;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #06b6d4
+                );
+
+            box-shadow:
+                0 0 20px rgba(37, 150, 243, 0.3);
+        }
+
+
+        /* =====================================================
+           GRID DOS PRODUTOS
+        ====================================================== */
+
+        .produtos {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* =====================================================
+           CARD
+        ====================================================== */
+
+        .card-produto {
+
+            background:
+                rgba(15, 30, 50, 0.94);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            transition:
+                transform 0.35s,
+                box-shadow 0.35s,
+                border-color 0.35s;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+
+        .card-produto:hover {
+
+            transform: translateY(-8px);
+
+            border-color:
+                rgba(37, 150, 243, 0.6);
+
+            box-shadow:
+                0 15px 40px rgba(37, 99, 235, 0.25),
+                0 0 25px rgba(6, 182, 212, 0.12);
+        }
+
+
+        /* =====================================================
+           ETIQUETA
+        ====================================================== */
+
+        .etiqueta {
+
+            position: absolute;
+
+            top: 15px;
+            left: 15px;
+
+            z-index: 5;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #06b6d4
+                );
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            text-transform: uppercase;
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* =====================================================
+           IMAGEM
+        ====================================================== */
+
+        .imagem-produto {
+
+            width: 100%;
+
+            height: 330px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0b1628,
+                    #111f34
+                );
+        }
+
+
+        .imagem-produto::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background: #2563eb;
+
+            filter: blur(100px);
+
+            opacity: 0.12;
+        }
+
+
+        .imagem-produto img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+            position: relative;
+
+            z-index: 2;
+
+            transition: 0.4s;
+
+            filter:
+                drop-shadow(
+                    0 20px 20px rgba(0,0,0,0.55)
+                );
+        }
+
+
+        .card-produto:hover
+        .imagem-produto img {
+
+            transform: scale(1.05);
+        }
+
+
+        /* =====================================================
+           INFORMAÇÕES
+        ====================================================== */
+
+        .informacoes {
+
+            padding: 22px;
+
+            text-align: center;
+        }
+
+
+        .informacoes h2 {
+
+            color: #38a5ff;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+
+        .descricao {
+
+            color: #cbd5e1;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            min-height: 42px;
+
+            margin-bottom: 8px;
+        }
+
+
+        /* =====================================================
+           FRASE MOTIVACIONAL
+        ====================================================== */
+
+        .motivacao {
+
+            color: #06b6d4;
+
+            font-size: 14px;
+
+            font-style: italic;
+
+            font-weight: bold;
+
+            line-height: 1.4;
+
+            min-height: 42px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            margin: 10px 0 15px;
+
+            padding: 0 5px;
+        }
+
+
+        /* =====================================================
+           PREÇO
+        ====================================================== */
+
+        .preco {
+
+            color: #00d9ff;
+
+            font-size: 24px;
+
+            margin-bottom: 16px;
+        }
+
+
+        /* =====================================================
+           BOTÃO COMPRAR
+        ====================================================== */
+
+        .comprar {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0877e8,
+                    #2196f3
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .comprar:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #06b6d4
+                );
+
+            box-shadow:
+                0 0 20px rgba(6, 182, 212, 0.4);
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           RESPONSIVIDADE
+        ====================================================== */
+
+        @media (max-width: 1100px) {
+
+            .produtos {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            body {
+
+                padding-top: 65px;
+            }
+
+
+            .navbar {
+
+                height: auto;
+
+                min-height: 60px;
+            }
+
+
+            .conteudo {
+
+                padding:
+                    30px 15px 50px;
+            }
+
+
+            .titulo h1 {
+
+                font-size: 30px;
+            }
+
+
+            .produtos {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .imagem-produto {
+
+                height: 350px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR BOOTSTRAP
+    ====================================================== -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+
+        <div class="container-fluid px-5">
+
+            <a
+                class="navbar-brand"
+                href="index.html"
+            >
+                ignite<span>FIT</span>
+            </a>
+
+
+            <!-- BOTÃO MOBILE -->
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menuNavbar"
+                aria-controls="menuNavbar"
+                aria-expanded="false"
+                aria-label="Abrir menu"
+            >
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <!-- MENU -->
+
+            <div
+                class="collapse navbar-collapse"
+                id="menuNavbar"
+            >
+
+                <ul class="navbar-nav ms-4 gap-lg-3">
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="index.html"
+                        >
+                            Home
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link active"
+                            href="produtos.html"
+                        >
+                            Produtos
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="contato.html"
+                        >
+                            Contato
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="login.html"
+                        >
+                            Cadastro/Login
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
+
+    <main class="conteudo">
+
+
+        <!-- TÍTULO -->
+
+        <div class="titulo">
+
+            <h1>
+                Produtos em
+                <span>Destaque</span>
+            </h1>
+
+            <p>
+                Encontre o look ideal para acompanhar sua evolução.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FILTROS
+        ================================================== -->
+
+        <div class="filtros">
+
+            <button
+                class="filtro ativo"
+                onclick="filtrarProdutos('todos', this)"
+            >
+                Todos
+            </button>
+
+
+            <button
+                class="filtro"
+                onclick="filtrarProdutos('feminino', this)"
+            >
+                Feminino
+            </button>
+
+
+            <button
+                class="filtro"
+                onclick="filtrarProdutos('masculino', this)"
+            >
+                Masculino
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             GRID
+        ================================================== -->
+
+        <section
+            class="produtos"
+            id="listaProdutos"
+        >
+
+
+            <!-- =================================================
+                 FEMININO
+            ================================================== -->
+
+
+            <!-- 01 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <span class="etiqueta">
+                    Destaque
+                </span>
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/top-modelo.png"
+                        alt="Top Fitness"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Top Fitness</h2>
+
+                    <p class="descricao">
+                        Conforto e liberdade para acompanhar todos os seus movimentos.
+                    </p>
+
+                    <p class="motivacao">
+                        "Seu limite começa onde sua determinação termina."
+                    </p>
+
+                    <div class="preco">
+                        R$ 79,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 02 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/camiseta-modelo.png"
+                        alt="Camiseta Dry Fit"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Camiseta Dry Fit</h2>
+
+                    <p class="descricao">
+                        Leve, respirável e preparada para acompanhar seu treino.
+                    </p>
+
+                    <p class="motivacao">
+                        "Treine hoje para agradecer a si mesma amanhã."
+                    </p>
+
+                    <div class="preco">
+                        R$ 99,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 03 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/jaqueta-modelo.png"
+                        alt="Jaqueta Esportiva"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Jaqueta Esportiva</h2>
+
+                    <p class="descricao">
+                        Estilo e proteção para seus treinos em qualquer momento.
+                    </p>
+
+                    <p class="motivacao">
+                        "Não espere inspiração. Crie sua própria motivação."
+                    </p>
+
+                    <div class="preco">
+                        R$ 149,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 04 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/regata-modelo.png"
+                        alt="Regata Fitness"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Regata Fitness</h2>
+
+                    <p class="descricao">
+                        Design esportivo para garantir mobilidade durante o treino.
+                    </p>
+
+                    <p class="motivacao">
+                        "Cada treino é mais um passo em direção ao seu objetivo."
+                    </p>
+
+                    <div class="preco">
+                        R$ 84,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 05 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/cropped-modelo.png"
+                        alt="Cropped Esportivo"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Cropped Esportivo</h2>
+
+                    <p class="descricao">
+                        Estilo moderno aliado ao conforto para sua rotina fitness.
+                    </p>
+
+                    <p class="motivacao">
+                        "Vista sua determinação e faça acontecer."
+                    </p>
+
+                    <div class="preco">
+                        R$ 89,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 06 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/blusa-modelo.png"
+                        alt="Blusa Fitness"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Blusa Fitness</h2>
+
+                    <p class="descricao">
+                        Conforto para treinar com confiança em qualquer estação.
+                    </p>
+
+                    <p class="motivacao">
+                        "A constância transforma pequenos esforços em grandes resultados."
+                    </p>
+
+                    <div class="preco">
+                        R$ 109,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 07 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/moletom-modelo.png"
+                        alt="Moletom Esportivo"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Moletom Esportivo</h2>
+
+                    <p class="descricao">
+                        Conforto e estilo para sua rotina dentro e fora da academia.
+                    </p>
+
+                    <p class="motivacao">
+                        "Continue mesmo nos dias em que a vontade de parar aparecer."
+                    </p>
+
+                    <div class="preco">
+                        R$ 159,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 08 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <span class="etiqueta">
+                    Mais vendido
+                </span>
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/legging-modelo.png"
+                        alt="Legging"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Legging</h2>
+
+                    <p class="descricao">
+                        Ajuste confortável para acompanhar seus movimentos.
+                    </p>
+
+                    <p class="motivacao">
+                        "Foco no processo. O resultado será consequência."
+                    </p>
+
+                    <div class="preco">
+                        R$ 89,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 09 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/short-modelo.png"
+                        alt="Short Fitness"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Short Fitness</h2>
+
+                    <p class="descricao">
+                        Leveza e praticidade para você se movimentar sem limites.
+                    </p>
+
+                    <p class="motivacao">
+                        "Supere o treino de ontem e construa sua melhor versão."
+                    </p>
+
+                    <div class="preco">
+                        R$ 74,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 10 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/jogger-modelo.png"
+                        alt="Calça Jogger"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Calça Jogger</h2>
+
+                    <p class="descricao">
+                        Estilo urbano e conforto para treinar ou aproveitar o dia.
+                    </p>
+
+                    <p class="motivacao">
+                        "Disciplina é continuar quando a motivação desaparece."
+                    </p>
+
+                    <div class="preco">
+                        R$ 119,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 11 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/short-saia-modelo.png"
+                        alt="Short Saia"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Short Saia</h2>
+
+                    <p class="descricao">
+                        Praticidade, conforto e liberdade para seus movimentos.
+                    </p>
+
+                    <p class="motivacao">
+                        "Acredite no seu potencial e dê mais um passo."
+                    </p>
+
+                    <div class="preco">
+                        R$ 94,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 12 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/calca-fitness-modelo.png"
+                        alt="Calça Fitness"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Calça Fitness</h2>
+
+                    <p class="descricao">
+                        Conforto e resistência para acompanhar sua evolução.
+                    </p>
+
+                    <p class="motivacao">
+                        "Grandes mudanças começam com pequenas decisões."
+                    </p>
+
+                    <div class="preco">
+                        R$ 119,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 13 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/bermuda-modelo.png"
+                        alt="Bermuda Esportiva"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Bermuda Esportiva</h2>
+
+                    <p class="descricao">
+                        Liberdade para correr, treinar e superar seus limites.
+                    </p>
+
+                    <p class="motivacao">
+                        "Não compare sua jornada. Apenas continue avançando."
+                    </p>
+
+                    <div class="preco">
+                        R$ 79,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 14 -->
+
+            <article
+                class="card-produto"
+                data-genero="feminino"
+            >
+
+                <span class="etiqueta">
+                    Performance
+                </span>
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/calca-compressao-modelo.png"
+                        alt="Calça de Compressão"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Calça de Compressão</h2>
+
+                    <p class="descricao">
+                        Tecnologia e conforto para acompanhar seus treinos.
+                    </p>
+
+                    <p class="motivacao">
+                        "Você é capaz de mais do que imagina. Continue."
+                    </p>
+
+                    <div class="preco">
+                        R$ 129,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 MASCULINO
+            ================================================== -->
+
+
+            <!-- 15 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <span class="etiqueta">
+                    Destaque
+                </span>
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/camiseta-masculina-modelo.png"
+                        alt="Camiseta Fitness Masculina"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Camiseta Fitness Masculina</h2>
+
+                    <p class="descricao">
+                        Tecnologia e conforto para acompanhar seus treinos.
+                    </p>
+
+                    <p class="motivacao">
+                        "Seu esforço de hoje constrói a força de amanhã."
+                    </p>
+
+                    <div class="preco">
+                        R$ 99,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 16 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/camiseta-dryfit-masculina-modelo.png"
+                        alt="Camiseta Dry Fit Masculina"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Camiseta Dry Fit Masculina</h2>
+
+                    <p class="descricao">
+                        Leveza e respirabilidade para treinos intensos.
+                    </p>
+
+                    <p class="motivacao">
+                        "Treine com propósito. Evolua com consistência."
+                    </p>
+
+                    <div class="preco">
+                        R$ 109,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 17 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/regata-masculina-modelo.png"
+                        alt="Regata Fitness Masculina"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Regata Fitness Masculina</h2>
+
+                    <p class="descricao">
+                        Liberdade de movimento para acompanhar cada repetição.
+                    </p>
+
+                    <p class="motivacao">
+                        "Mais uma repetição. Mais um passo. Mais uma conquista."
+                    </p>
+
+                    <div class="preco">
+                        R$ 79,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 18 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/jaqueta-masculina-modelo.png"
+                        alt="Jaqueta Esportiva Masculina"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Jaqueta Esportiva Masculina</h2>
+
+                    <p class="descricao">
+                        Proteção, conforto e estilo para sua rotina esportiva.
+                    </p>
+
+                    <p class="motivacao">
+                        "Quem persiste chega onde poucos conseguem chegar."
+                    </p>
+
+                    <div class="preco">
+                        R$ 159,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 19 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/regata-premium-masculina-modelo.png"
+                        alt="Regata Premium Masculina"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Regata Premium Masculina</h2>
+
+                    <p class="descricao">
+                        Design moderno e tecido confortável para sua evolução.
+                    </p>
+
+                    <p class="motivacao">
+                        "Não busque ser perfeito. Busque ser melhor."
+                    </p>
+
+                    <div class="preco">
+                        R$ 89,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 20 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/blusa-masculina-modelo.png"
+                        alt="Blusa Fitness Masculina"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Blusa Fitness Masculina</h2>
+
+                    <p class="descricao">
+                        Conforto térmico para treinar em qualquer estação.
+                    </p>
+
+                    <p class="motivacao">
+                        "A disciplina transforma objetivos em realidade."
+                    </p>
+
+                    <div class="preco">
+                        R$ 119,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 21 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/moletom-masculino-modelo.png"
+                        alt="Moletom Fitness Masculino"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Moletom Fitness Masculino</h2>
+
+                    <p class="descricao">
+                        Conforto e estilo para academia, treino e dia a dia.
+                    </p>
+
+                    <p class="motivacao">
+                        "Continue avançando, mesmo quando ninguém estiver olhando."
+                    </p>
+
+                    <div class="preco">
+                        R$ 169,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 22 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <span class="etiqueta">
+                    Mais vendido
+                </span>
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/bermuda-masculina-modelo.png"
+                        alt="Bermuda Fitness Masculina"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Bermuda Fitness Masculina</h2>
+
+                    <p class="descricao">
+                        Leveza e mobilidade para seus treinos mais intensos.
+                    </p>
+
+                    <p class="motivacao">
+                        "Seu maior concorrente é quem você foi ontem."
+                    </p>
+
+                    <div class="preco">
+                        R$ 79,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 23 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/short-masculino-modelo.png"
+                        alt="Short Fitness Masculino"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Short Fitness Masculino</h2>
+
+                    <p class="descricao">
+                        Conforto e liberdade para correr e treinar.
+                    </p>
+
+                    <p class="motivacao">
+                        "Comece onde está. Use o que tem. Faça acontecer."
+                    </p>
+
+                    <div class="preco">
+                        R$ 74,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 24 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/jogger-masculina-modelo.png"
+                        alt="Calça Jogger Masculina"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Calça Jogger Masculina</h2>
+
+                    <p class="descricao">
+                        Estilo urbano combinado com conforto.
+                    </p>
+
+                    <p class="motivacao">
+                        "Grandes resultados são construídos um treino de cada vez."
+                    </p>
+
+                    <div class="preco">
+                        R$ 129,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 25 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/calca-fitness-masculina-modelo.png"
+                        alt="Calça Fitness Masculina"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Calça Fitness Masculina</h2>
+
+                    <p class="descricao">
+                        Resistência e conforto para acompanhar sua rotina.
+                    </p>
+
+                    <p class="motivacao">
+                        "Não desista no meio da transformação."
+                    </p>
+
+                    <div class="preco">
+                        R$ 119,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 26 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/bermuda-compressao-masculina-modelo.png"
+                        alt="Bermuda de Compressão Masculina"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Bermuda de Compressão Masculina</h2>
+
+                    <p class="descricao">
+                        Ajuste e conforto para treinos de performance.
+                    </p>
+
+                    <p class="motivacao">
+                        "Treino difícil. Mente forte. Resultado real."
+                    </p>
+
+                    <div class="preco">
+                        R$ 99,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 27 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/calca-compressao-masculina-modelo.png"
+                        alt="Calça de Compressão Masculina"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Calça de Compressão Masculina</h2>
+
+                    <p class="descricao">
+                        Performance e conforto para acompanhar treinos intensos.
+                    </p>
+
+                    <p class="motivacao">
+                        "A força começa na mente e continua na atitude."
+                    </p>
+
+                    <div class="preco">
+                        R$ 139,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 28 -->
+
+            <article
+                class="card-produto"
+                data-genero="masculino"
+            >
+
+                <span class="etiqueta">
+                    Performance
+                </span>
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="img/short-performance-masculino-modelo.png"
+                        alt="Short Performance Masculino"
+                    >
+
+                </div>
+
+                <div class="informacoes">
+
+                    <h2>Short Performance Masculino</h2>
+
+                    <p class="descricao">
+                        Desenvolvido para acompanhar seus treinos mais exigentes.
+                    </p>
+
+                    <p class="motivacao">
+                        "Não pare quando cansar. Pare quando terminar."
+                    </p>
+
+                    <div class="preco">
+                        R$ 89,90
+                    </div>
+
+                    <button class="comprar">
+                        Comprar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           FILTRO FEMININO / MASCULINO / TODOS
+        ====================================================== */
+
+        function filtrarProdutos(genero, botao) {
+
+            const produtos =
+                document.querySelectorAll(".card-produto");
+
+            const botoes =
+                document.querySelectorAll(".filtro");
+
+
+            botoes.forEach(function(item) {
+
+                item.classList.remove("ativo");
+
+            });
+
+
+            botao.classList.add("ativo");
+
+
+            produtos.forEach(function(produto) {
+
+                const tipo =
+                    produto.getAttribute("data-genero");
+
+
+                if (
+                    genero === "todos" ||
+                    tipo === genero
+                ) {
+
+                    produto.style.display = "block";
+
+                } else {
+
+                    produto.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+
+        /* =====================================================
+           BOTÕES COMPRAR
+        ====================================================== */
+
+        const botoesComprar =
+            document.querySelectorAll(".comprar");
+
+
+        botoesComprar.forEach(function(botao) {
+
+            botao.addEventListener(
+                "click",
+                function() {
+
+                    const card =
+                        this.closest(".card-produto");
+
+
+                    const produto =
+                        card.querySelector("h2").textContent;
+
+
+                    alert(
+                        "Você selecionou: " + produto
+                    );
+
+                }
+            );
+
+        });
+
+    </script>
+
+
+
+    <!-- =====================================================
+         BOOTSTRAP JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+
+</body>
+
+</html>

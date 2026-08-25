@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>IGNITE FIT</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      width:100%;
+      min-height:100vh;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      background:
+      radial-gradient(circle at top,
+      #1e3a8a 0%,
+      #0f172a 45%,
+      #020617 100%);
+
+      overflow:hidden;
+      padding:30px;
+    }
+
+    body::before{
+      content:"";
+      position:absolute;
+
+      width:700px;
+      height:700px;
+
+      background:#2563eb;
+
+      filter:blur(180px);
+
+      opacity:0.18;
+
+      top:-250px;
+      left:-250px;
+    }
+
+    body::after{
+      content:"";
+      position:absolute;
+
+      width:600px;
+      height:600px;
+
+      background:#06b6d4;
+
+      filter:blur(180px);
+
+      opacity:0.15;
+
+      bottom:-250px;
+      right:-250px;
+    }
+
+    /* CONTAINER */
+
+    .container{
+      width:1350px;
+      max-width:100%;
+
+      height:780px;
+
+      background:
+      rgba(15,23,42,0.88);
+
+      border:
+      1px solid rgba(255,255,255,0.08);
+
+      backdrop-filter:blur(18px);
+
+      border-radius:30px;
+
+      overflow:hidden;
+
+      display:flex;
+
+      position:relative;
+
+      z-index:10;
+
+      box-shadow:
+      0 0 30px rgba(37,99,235,0.25),
+      0 0 90px rgba(0,0,0,0.6);
+    }
+
+    /* PERSONAGEM */
+
+    .personagem{
+      flex:1;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      position:relative;
+
+      background:
+      linear-gradient(
+      180deg,
+      #111827 0%,
+      #0f172a 100%);
+    }
+
+    .personagem::before{
+      content:"";
+
+      position:absolute;
+
+      width:500px;
+      height:500px;
+
+      background:#2563eb;
+
+      border-radius:50%;
+
+      filter:blur(140px);
+
+      opacity:0.22;
+    }
+
+    /* MODELO */
+
+    .modelo{
+      position:relative;
+
+      width:90%;
+      height:90%;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .modelo img{
+      width:100%;
+      height:100%;
+
+      object-fit:contain;
+
+      border-radius:20px;
+
+      filter:
+      drop-shadow(
+      0 25px 35px rgba(0,0,0,0.65));
+
+      transition:0.4s;
+    }
+
+    .modelo img:hover{
+      transform:scale(1.02);
+    }
+
+    /* PAINEL */
+
+    .painel{
+      width:470px;
+
+      background:
+      rgba(17,24,39,0.97);
+
+      border-left:
+      1px solid rgba(255,255,255,0.06);
+
+      padding:28px;
+
+      overflow-y:auto;
+
+      display:flex;
+      flex-direction:column;
+
+      gap:20px;
+    }
+
+    /* TITULO */
+
+    .titulo-painel{
+      width:100%;
+
+      padding:22px;
+
+      border-radius:20px;
+
+      text-align:center;
+
+      font-size:25px;
+      font-weight:bold;
+
+      letter-spacing:2px;
+
+      color:white;
+
+      background:
+      linear-gradient(
+      135deg,
+      rgba(37,99,235,0.25),
+      rgba(6,182,212,0.15));
+
+      border:
+      1px solid rgba(255,255,255,0.08);
+
+      box-shadow:
+      0 0 25px rgba(37,99,235,0.18);
+    }
+
+    /* CARD */
+
+    .card{
+      background:
+      rgba(30,41,59,0.7);
+
+      border:
+      1px solid rgba(255,255,255,0.06);
+
+      border-radius:22px;
+
+      padding:22px;
+    }
+
+    .card h2{
+      color:white;
+
+      margin-bottom:18px;
+
+      font-size:20px;
+    }
+
+    /* CAMPOS */
+
+    .campo{
+      margin-bottom:20px;
+    }
+
+    .campo label{
+      display:block;
+
+      margin-bottom:10px;
+
+      color:#cbd5e1;
+
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    select{
+      width:100%;
+
+      padding:15px;
+
+      border:none;
+      outline:none;
+
+      border-radius:14px;
+
+      background:#020617;
+
+      color:white;
+
+      font-size:15px;
+
+      border:
+      1px solid rgba(255,255,255,0.08);
+    }
+
+    select:focus{
+      border-color:#2563eb;
+
+      box-shadow:
+      0 0 15px rgba(37,99,235,0.25);
+    }
+
+    input[type="color"]{
+      width:100%;
+      height:70px;
+
+      border:none;
+
+      background:none;
+
+      cursor:pointer;
+    }
+
+    /* BOTÃO */
+
+    .botao{
+      width:100%;
+
+      padding:18px;
+
+      border:none;
+
+      border-radius:18px;
+
+      background:
+      linear-gradient(
+      135deg,
+      #2563eb,
+      #06b6d4);
+
+      color:white;
+
+      font-size:17px;
+      font-weight:bold;
+
+      cursor:pointer;
+
+      transition:0.3s;
+    }
+
+    .botao:hover{
+      transform:scale(1.03);
+
+      box-shadow:
+      0 0 30px rgba(6,182,212,0.45);
+    }
+
+    /* RESPONSIVO */
+
+    @media(max-width:1100px){
+
+      .container{
+        flex-direction:column;
+        height:auto;
+      }
+
+      .painel{
+        width:100%;
+      }
+
+      .personagem{
+        min-height:700px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- PERSONAGEM -->
+
+    <div class="personagem">
+
+      <div class="modelo">
+
+        <img
+        id="modeloImagem"
+        src="img/top-modelo.png"
+        alt="Modelo Fitness">
+
+      </div>
+
+    </div>
+
+    <!-- PAINEL -->
+
+    <div class="painel">
+
+      <div class="titulo-painel">
+        PERSONALIZAÇÃO
+      </div>
+
+      <!-- SUPERIOR -->
+
+      <div class="card">
+
+        <h2>Parte Superior</h2>
+
+        <div class="campo">
+
+          <label>Modelo</label>
+
+          <select id="modeloTopo">
+
+            <!-- ADD SUA FOTO NO VALUE -->
+
+            <option
+            value="img/top-modelo.png">
+
+              Top Fitness
+
+            </option>
+
+            <option
+            value="img/camiseta-modelo.png">
+
+              Camiseta Dry Fit
+
+            </option>
+
+            <option
+            value="img/jaqueta-modelo.png">
+
+              Jaqueta Esportiva
+
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="campo">
+
+          <label>Cor</label>
+
+          <input
+          type="color"
+          id="corTopo"
+          value="#2563eb">
+
+        </div>
+
+      </div>
+
+      <!-- INFERIOR -->
+
+      <div class="card">
+
+        <h2>Parte Inferior</h2>
+
+        <div class="campo">
+
+          <label>Modelo</label>
+
+          <select id="modeloInferior">
+
+            <!-- ADD SUA FOTO NO VALUE -->
+
+            <option
+            value="img/legging-modelo.png">
+
+              Legging
+
+            </option>
+
+            <option
+            value="img/short-modelo.png">
+
+              Short Fitness
+
+            </option>
+
+            <option
+            value="img/jogger-modelo.png">
+
+              Calça Jogger
+
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="campo">
+
+          <label>Cor</label>
+
+          <input
+          type="color"
+          id="corInferior"
+          value="#0f172a">
+
+        </div>
+
+      </div>
+
+      <!-- BOTÃO -->
+
+      <button class="botao">
+
+        CONFIRMAR PERSONALIZAÇÃO
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const modeloImagem =
+    document.getElementById("modeloImagem");
+
+    const modeloTopo =
+    document.getElementById("modeloTopo");
+
+    const modeloInferior =
+    document.getElementById("modeloInferior");
+
+    /* TROCAR IMAGEM SUPERIOR */
+
+    modeloTopo.addEventListener("change", () => {
+
+      modeloImagem.src =
+      modeloTopo.value;
+
+    });
+
+    /* TROCAR IMAGEM INFERIOR */
+
+    modeloInferior.addEventListener("change", () => {
+
+      modeloImagem.src =
+      modeloInferior.value;
+
+    });
+
+  </script>
+
+</body>
+</html>
